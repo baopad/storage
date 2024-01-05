@@ -1,0 +1,37 @@
+apt update &&
+apt install nginx -y &&
+apt install snapd -y &&
+snap install core &&
+snap refresh core &&
+snap install --classic certbot &&
+ln -s /snap/bin/certbot /usr/bin/certbot
+certbot certonly --nginx -d www.example.com --non-interactive --register-unsafely-without-email --agree-tos &&
+certbot renew --dry-run &&
+mkdir -p /var/www/www.example.com
+chmod -R 755 /var/www/www.example.com
+
+cat > /etc/nginx/conf.d/./www.example.com.conf <<EOF
+server {
+    listen 80;
+    listen [::]:80;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    
+    ssl on;
+    ssl_certificate      /etc/letsencrypt/live/www.example.com/fullchain.pem;
+    ssl_certificate_key  /etc/letsencrypt/live/www.example.com/privkey.pem;
+    
+    server_name  www.example.com;
+    root         /var/www/html;
+    index        index.html;
+    location / {
+                try_files $uri $uri/ =404;
+        }
+}
+EOF
+
+systemctl stop nginx
+systemctl start nginx
+systemctl status nginx
+systemctl restart nginx
+systemctl enable nginx
