@@ -11,9 +11,10 @@ mkdir -p /var/www/www.example.com
 chmod -R 755 /var/www/www.example.com
 
 cat > /etc/nginx/conf.d/./www.example.com.conf <<EOF
-worker_processes 4;
+worker_processes 1;
+#worker_rlimit_nofile 8;
 events {
-    worker_connections 8;
+    worker_connections 4;
 }
 server {
     listen 80;
