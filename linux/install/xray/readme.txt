@@ -14,18 +14,17 @@ geoip.dat geosite.dat
 /etc/systemd/system/
 xray.service
 
-rm /usr/local/bin/xray
-
-wget -P /usr/local/bin/ https://storage.paotung.org/linux/install/xray/xray
-wget -P /usr/local/etc/xray/ https://storage.paotung.org/linux/install/xray/config.json
-wget -P /usr/local/share/xray/ https://storage.paotung.org/linux/install/xray/geoip.dat
-wget -P /usr/local/share/xray/ https://storage.paotung.org/linux/install/xray/geosite.dat
-wget -P /etc/systemd/system/ https://storage.paotung.org/linux/install/xray/xray.service
-wget -P /etc/systemd/system/ https://storage.paotung.org/linux/install/xray/xray@.service
+##########systemctl start xray若有程序先停止
 
 
+wget -O /usr/local/bin/xray https://storage.paotung.org/linux/install/xray/xray
+wget -O /usr/local/etc/xray/config.json https://storage.paotung.org/linux/install/xray/config.json
+wget -O /usr/local/share/xray/geoip.dat https://storage.paotung.org/linux/install/xray/geoip.dat
+wget -O /usr/local/share/xray/geosite.dat https://storage.paotung.org/linux/install/xray/geosite.dat
+wget -O /etc/systemd/system/xray.service https://storage.paotung.org/linux/install/xray/xray.service
+wget -O /etc/systemd/system/xray@.service https://storage.paotung.org/linux/install/xray/xray@.service
 mkdir -p /var/log/xray
-chmod -R 755 /var/log/xray
+chmod -R 644 /var/log/xray
 chmod 755 /usr/local/bin/xray
 systemctl enable xray
 
