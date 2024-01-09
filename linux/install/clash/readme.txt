@@ -29,7 +29,14 @@ mkdir -p /var/log/clash
 chmod -R 755 /var/log/clash
 chmod 755 /usr/local/bin/clash
 systemctl enable clash
+systemctl daemon-reload
 
+
+systemctl status clash # 运行状态
+systemctl start clash # 启动
+systemctl stop clash # 停止
+systemctl enable clash # 开机自启
+systemctl disable clash # 取消开机自启
 
 cat > /usr/local/etc/clash/./config.json <<EOF
 {
