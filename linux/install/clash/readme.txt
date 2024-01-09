@@ -1,36 +1,37 @@
 #程序文件
 /usr/local/bin/
-xray
+clash
 
 #配置目录
-/usr/local/etc/xray/
+/usr/local/etc/clash/
 config.json
 
 #共享目录
-/usr/local/share/xray/
+/usr/local/share/clash/
 geoip.dat geosite.dat
 
 #注册系统文件
 /etc/systemd/system/
-xray.service
+clash.service
 
-rm /usr/local/bin/xray
+rm /usr/local/bin/clash
 
-wget -cP /usr/local/bin/ https://storage.paotung.org/linux/install/xray/xray
-wget -cP /usr/local/etc/xray/ https://storage.paotung.org/linux/install/xray/config.json
-wget -cP /usr/local/share/xray/ https://storage.paotung.org/linux/install/xray/geoip.dat
-wget -cP /usr/local/share/xray/ https://storage.paotung.org/linux/install/xray/geosite.dat
-wget -cP /etc/systemd/system/ https://storage.paotung.org/linux/install/xray/xray.service
-wget -cP /etc/systemd/system/ https://storage.paotung.org/linux/install/xray/xray@.service
-
-
-mkdir -p /var/log/xray
-chmod -R 755 /var/log/xray
-chmod 755 /usr/local/bin/xray
-systemctl enable xray
+wget -cP /usr/local/bin/ https://storage.paotung.org/linux/install/clash/clash
+wget -cP /usr/local/etc/clash/ https://storage.paotung.org/linux/install/clash/config.yml
+wget -cP /usr/local/etc/clash/ https://storage.paotung.org/linux/install/clash/Country.mmdb
+wget -cP /usr/local/etc/clash/ https://storage.paotung.org/linux/install/clash/geoip.dat
+wget -cP /usr/local/etc/clash/ https://storage.paotung.org/linux/install/clash/geosite.dat
+wget -cP /etc/systemd/system/ https://storage.paotung.org/linux/install/clash/clash.service
+wget -cP /etc/systemd/system/ https://storage.paotung.org/linux/install/clash/clash@.service
 
 
-cat > /usr/local/etc/xray/./config.json <<EOF
+mkdir -p /var/log/clash
+chmod -R 755 /var/log/clash
+chmod 755 /usr/local/bin/clash
+systemctl enable clash
+
+
+cat > /usr/local/etc/clash/./config.json <<EOF
 {
     "inbounds": [
         {
@@ -82,31 +83,16 @@ cat > /usr/local/etc/xray/./config.json <<EOF
     ]
 }
 EOF
-systemctl restart xray
-systemctl status xray
+systemctl restart clash
+systemctl status clash
 
 
 删除
-systemctl disable xray
-rm -rf /etc/systemd/system/multi-user.target.wants/xray.service.
-rm -rf /usr/local/bin/xray
-rm -rf /etc/systemd/system/xray.service
-rm -rf /etc/systemd/system/xray@.service
-rm -rf /etc/systemd/system/xray.service.d
-rm -rf /etc/systemd/system/xray@.service.d
-rm -rf /usr/local/share/xray
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+systemctl disable clash
+rm -rf /etc/systemd/system/multi-user.target.wants/clash.service.
+rm -rf /usr/local/bin/clash
+rm -rf /etc/systemd/system/clash.service
+rm -rf /etc/systemd/system/clash@.service
+rm -rf /etc/systemd/system/clash.service.d
+rm -rf /etc/systemd/system/clash@.service.d
+rm -rf /usr/local/share/clash

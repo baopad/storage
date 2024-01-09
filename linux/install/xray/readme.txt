@@ -17,7 +17,7 @@ clash.service
 rm /usr/local/bin/clash
 
 wget -cP /usr/local/bin/ https://storage.paotung.org/linux/install/clash/clash
-wget -cP /usr/local/etc/clash/ https://storage.paotung.org/linux/install/clash/config.json
+wget -cP /usr/local/etc/clash/ https://storage.paotung.org/linux/install/clash/config.yaml
 wget -cP /usr/local/share/clash/ https://storage.paotung.org/linux/install/clash/geoip.dat
 wget -cP /usr/local/share/clash/ https://storage.paotung.org/linux/install/clash/geosite.dat
 wget -cP /etc/systemd/system/ https://storage.paotung.org/linux/install/clash/clash.service
@@ -84,6 +84,8 @@ cat > /usr/local/etc/clash/./config.json <<EOF
 EOF
 systemctl restart clash
 systemctl status clash
+
+systemctl start clash
 
 
 删除
