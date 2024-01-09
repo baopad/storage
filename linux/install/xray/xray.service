@@ -1,6 +1,6 @@
 [Unit]
 Description=Xray Service
-Documentation=https://github.com/xtls
+Documentation=https://storage.paotung.org
 After=network.target nss-lookup.target
 
 [Service]
