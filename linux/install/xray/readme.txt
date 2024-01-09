@@ -14,7 +14,7 @@ geoip.dat geosite.dat
 /etc/systemd/system/
 xray.service
 
-##########systemctl start xray若有程序先停止
+##########systemctl stop xray若有程序先停止
 
 
 mkdir -p /usr/local/bin
