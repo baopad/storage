@@ -1,0 +1,147 @@
+{
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",
+            "port": 8080,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "87ae2ebc-3e45-33d9-8ed3-61a337d88888"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "none"
+            }
+        },
+        {
+            "listen": "0.0.0.0",
+            "port": 8088,
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "87ae2ebc-3e45-33d9-8ed3-61a337d88888"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "none"
+            }
+        },
+        {
+            "listen": "0.0.0.0",
+            "port": 443,
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "87ae2ebc-3e45-33d9-8ed3-61a337d88888"
+                    }
+                ],
+                "decryption": "none",
+                "fallbacks": [
+                    {
+                        "dest": 8443
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "tls",
+                "tlsSettings": {
+                    "certificates": [
+                        {
+                            "certificateFile": "/etc/letsencrypt/live/hub.paotung.org/fullchain.pem",
+                            "keyFile": "/etc/letsencrypt/live/hub.paotung.org/privkey.pem"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "listen": "0.0.0.0",
+            "port": 8888,
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "87ae2ebc-3e45-33d9-8ed3-61a337d88888",
+                        "flow": "xtls-rprx-vision"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "reality",
+                "realitySettings": {
+                    "dest": 443,
+                    "serverNames": ["hub.paotung.org"],
+                    "privateKey": "cGnBERYTqjCYZMLsk0_xH-ioR5V-GSIHipOgZGcrT18",
+                    "publickey": "JGBxyfUHKZYihtDUcZHHP9nYOnE-rGulm94Fag2tsmE",
+                    "shortIds": [""]
+                }
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "settings": {}
+        },
+        {
+            "tag": "UseIPv4",
+            "protocol": "freedom",
+            "settings": {"domainStrategy": "UseIPv4"}
+        },
+        {
+            "tag": "UseIPv6",
+            "protocol": "freedom",
+            "settings": {"domainStrategy": "UseIPv6"}
+        },
+        {
+            "tag": "wireguard",
+            "protocol": "wireguard",
+            "settings": {
+                "secretKey": "CLO/kKlJr6CWLWiNLVxO5vlQJpSs+ZmTcUtPwpS9k3g=",
+                "address": ["172.16.0.2"],
+                "reserved":[215, 217, 161],
+                "peers": [
+                    {
+                        "publicKey": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+                        "endpoint": "engage.cloudflareclient.com:2408"
+                    }
+                ]
+            }
+        }
+    ],
+    "routing": {
+        "rules": [
+            {
+                "type": "field",
+                "domain": ["geosite:google","geosite:youtube"],
+                "outboundTag": "UseIPv4"
+            },
+            {
+                "type": "field",
+                "domain": ["Use.IPv6"],
+                "outboundTag": "UseIPv6"
+            },
+            {
+                "type": "field",
+                "domain": ["geosite:cn"],
+                "outboundTag": "wireguard"
+            },
+            {
+                "type": "field",
+                "ip": ["geoip:cn"],
+                "outboundTag": "wireguard"
+            }
+        ]
+    }
+}
