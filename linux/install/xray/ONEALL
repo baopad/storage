@@ -75,4 +75,4 @@ cat > /usr/local/etc/xray/./config.json <<EOF
 EOF
 systemctl enable xray
 systemctl restart xray
-systemctl status apache2
+systemctl status xray
