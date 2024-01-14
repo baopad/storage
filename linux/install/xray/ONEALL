@@ -1,3 +1,4 @@
+systemctl stop xray
 mkdir -p /usr/local/bin
 mkdir -p /usr/local/share/xray
 mkdir -p /var/log/xray
