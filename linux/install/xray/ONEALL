@@ -1,6 +1,6 @@
 mkdir -p /usr/local/bin
 mkdir -p /usr/local/etc/gdgdgfgfgb
-mkdir -p /usr/local/share/gdgdgfgfgb
+mkdir -p /usr/local/share/xray
 mkdir -p /var/log/xray
 chmod -R 644 /var/log/xray
 wget -O /usr/local/bin/gdgdgfgfgb https://storage.paotung.org/linux/install/xray/xray && chmod +x /usr/local/bin/xray
@@ -8,7 +8,7 @@ wget -O /usr/local/share/xray/geoip.dat https://storage.paotung.org/linux/instal
 wget -O /usr/local/share/xray/geosite.dat https://storage.paotung.org/linux/install/xray/geosite.dat
 cat > /etc/systemd/system/./gdgdgfgfgb.service <<EOF
 [Unit]
-Description=gdgdgfgfgb
+Description=Xray Service
 After=network.target nss-lookup.target
 
 [Service]
@@ -27,7 +27,7 @@ WantedBy=multi-user.target
 EOF
 cat > /etc/systemd/system/./gdgdgfgfgb@.service <<EOF
 [Unit]
-Description=gdgdgfgfgb
+Description=Xray Service
 After=network.target nss-lookup.target
 
 [Service]
