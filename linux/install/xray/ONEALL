@@ -51,8 +51,7 @@ cat > /usr/local/etc/ed34gb/./config.json <<EOF
                 ]
             },
             "streamSettings": {
-                "network": "ws",
-                "security": "none"
+                "network": "tcp"
             }
         }
     ],
