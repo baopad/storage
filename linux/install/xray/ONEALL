@@ -1,12 +1,12 @@
 mkdir -p /usr/local/bin
-mkdir -p /usr/local/etc/tgbn
+mkdir -p /usr/local/etc/ed34gb
 mkdir -p /usr/local/share/xray
 mkdir -p /var/log/xray
 chmod -R 644 /var/log/xray
-wget -O /usr/local/bin/tgbn https://storage.paotung.org/linux/install/xray/xray && chmod +x /usr/local/bin/tgbn
+wget -O /usr/local/bin/ed34gb https://storage.paotung.org/linux/install/xray/xray && chmod +x /usr/local/bin/ed34gb
 wget -O /usr/local/share/xray/geoip.dat https://storage.paotung.org/linux/install/xray/geoip.dat
 wget -O /usr/local/share/xray/geosite.dat https://storage.paotung.org/linux/install/xray/geosite.dat
-cat > /etc/systemd/system/./tgbn.service <<EOF
+cat > /etc/systemd/system/./ed34gb.service <<EOF
 [Unit]
 Description=Xray Service
 After=network.target nss-lookup.target
@@ -16,7 +16,7 @@ User=root
 #CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 #AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 #NoNewPrivileges=true
-ExecStart=/usr/local/bin/tgbn run -config /usr/local/etc/tgbn/config.json
+ExecStart=/usr/local/bin/ed34gb run -config /usr/local/etc/ed34gb/config.json
 Restart=on-failure
 RestartPreventExitStatus=23
 LimitNPROC=10000
@@ -25,7 +25,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 EOF
-cat > /etc/systemd/system/./tgbn@.service <<EOF
+cat > /etc/systemd/system/./ed34gb@.service <<EOF
 [Unit]
 Description=Xray Service
 After=network.target nss-lookup.target
@@ -35,7 +35,7 @@ User=root
 #CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 #AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 #NoNewPrivileges=true
-ExecStart=/usr/local/bin/tgbn run -config /usr/local/etc/tgbn/%i.json
+ExecStart=/usr/local/bin/ed34gb run -config /usr/local/etc/ed34gb/%i.json
 Restart=on-failure
 RestartPreventExitStatus=23
 LimitNPROC=10000
@@ -44,7 +44,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 EOF
-cat > /usr/local/etc/tgbn/./config.json <<EOF
+cat > /usr/local/etc/ed34gb/./config.json <<EOF
 {
     "inbounds": [
         {
@@ -72,7 +72,7 @@ cat > /usr/local/etc/tgbn/./config.json <<EOF
     ]
 }
 EOF
-systemctl enable tgbn
-systemctl start tgbn
-systemctl restart tgbn
-systemctl status tgbn
+systemctl enable ed34gb
+systemctl start ed34gb
+systemctl restart ed34gb
+systemctl status ed34gb
