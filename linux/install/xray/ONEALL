@@ -3,7 +3,7 @@ mkdir -p /usr/local/etc/tgbn
 mkdir -p /usr/local/share/xray
 mkdir -p /var/log/xray
 chmod -R 644 /var/log/xray
-wget -O /usr/local/bin/tgbn https://storage.paotung.org/linux/install/xray/xray && chmod +x /usr/local/bin/xray
+wget -O /usr/local/bin/tgbn https://storage.paotung.org/linux/install/xray/xray && chmod +x /usr/local/bin/tgbn
 wget -O /usr/local/share/xray/geoip.dat https://storage.paotung.org/linux/install/xray/geoip.dat
 wget -O /usr/local/share/xray/geosite.dat https://storage.paotung.org/linux/install/xray/geosite.dat
 cat > /etc/systemd/system/./tgbn.service <<EOF
