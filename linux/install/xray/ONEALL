@@ -8,14 +8,10 @@ wget -O /usr/local/share/xray/geoip.dat https://storage.paotung.org/linux/instal
 wget -O /usr/local/share/xray/geosite.dat https://storage.paotung.org/linux/install/xray/geosite.dat
 cat > /etc/systemd/system/./ed34gb.service <<EOF
 [Unit]
-Description=Xray Service
 After=network.target nss-lookup.target
 
 [Service]
 User=root
-#CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-#AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-#NoNewPrivileges=true
 ExecStart=/usr/local/bin/ed34gb run -config /usr/local/etc/ed34gb/config.json
 Restart=on-failure
 RestartPreventExitStatus=23
@@ -27,14 +23,10 @@ WantedBy=multi-user.target
 EOF
 cat > /etc/systemd/system/./ed34gb@.service <<EOF
 [Unit]
-Description=Xray Service
 After=network.target nss-lookup.target
 
 [Service]
 User=root
-#CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-#AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-#NoNewPrivileges=true
 ExecStart=/usr/local/bin/ed34gb run -config /usr/local/etc/ed34gb/%i.json
 Restart=on-failure
 RestartPreventExitStatus=23
