@@ -1,14 +1,14 @@
-systemctl stop xray
 mkdir -p /usr/local/bin
-mkdir -p /usr/local/share/xray
+mkdir -p /usr/local/etc/x111ray
+mkdir -p /usr/local/share/x111ray
 mkdir -p /var/log/xray
 chmod -R 644 /var/log/xray
-wget -O /usr/local/bin/xray https://storage.paotung.org/linux/install/xray/xray && chmod +x /usr/local/bin/xray
+wget -O /usr/local/bin/x111ray https://storage.paotung.org/linux/install/xray/xray && chmod +x /usr/local/bin/xray
 wget -O /usr/local/share/xray/geoip.dat https://storage.paotung.org/linux/install/xray/geoip.dat
 wget -O /usr/local/share/xray/geosite.dat https://storage.paotung.org/linux/install/xray/geosite.dat
-cat > /etc/systemd/system/./xray.service <<EOF
+cat > /etc/systemd/system/./x111ray.service <<EOF
 [Unit]
-Description=Xray Service
+Description=x111ray
 After=network.target nss-lookup.target
 
 [Service]
@@ -16,7 +16,7 @@ User=root
 #CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 #AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 #NoNewPrivileges=true
-ExecStart=/usr/local/bin/xray run -config /usr/local/etc/xray/config.json
+ExecStart=/usr/local/bin/x111ray run -config /usr/local/etc/x111ray/config.json
 Restart=on-failure
 RestartPreventExitStatus=23
 LimitNPROC=10000
@@ -25,9 +25,9 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 EOF
-cat > /etc/systemd/system/./xray@.service <<EOF
+cat > /etc/systemd/system/./x111ray@.service <<EOF
 [Unit]
-Description=Xray Service
+Description=x111ray
 After=network.target nss-lookup.target
 
 [Service]
@@ -35,7 +35,7 @@ User=root
 #CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 #AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 #NoNewPrivileges=true
-ExecStart=/usr/local/bin/xray run -config /usr/local/etc/xray/%i.json
+ExecStart=/usr/local/bin/x111ray run -config /usr/local/etc/x111ray/%i.json
 Restart=on-failure
 RestartPreventExitStatus=23
 LimitNPROC=10000
@@ -44,7 +44,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 EOF
-cat > /usr/local/etc/xray/./config.json <<EOF
+cat > /usr/local/etc/x111ray/./config.json <<EOF
 {
     "inbounds": [
         {
@@ -72,6 +72,7 @@ cat > /usr/local/etc/xray/./config.json <<EOF
     ]
 }
 EOF
-systemctl enable xray
-systemctl restart xray
-systemctl status xray
+systemctl enable x111ray
+systemctl start x111ray
+systemctl restart x111ray
+systemctl status x111ray
