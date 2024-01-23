@@ -28,6 +28,7 @@ wget -O /usr/local/share/xray/geoip.dat https://storage.paotung.org/linux/instal
 wget -O /usr/local/share/xray/geosite.dat https://storage.paotung.org/linux/install/xray/geosite.dat
 wget -O /etc/systemd/system/xray.service https://storage.paotung.org/linux/install/xray/xray.service
 wget -O /etc/systemd/system/xray@.service https://storage.paotung.org/linux/install/xray/xray@.service
+systemctl daemon-reload
 systemctl enable xray
 
 
