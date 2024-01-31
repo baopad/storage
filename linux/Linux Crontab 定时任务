@@ -15,3 +15,6 @@ crontab -l
 
 增加命令
 echo '0 */4 * * * asd' >> /var/spool/cron/crontabs/root
+sed -i '$d' /var/spool/cron/crontabs/root
+
+sed -i '$!N;$!N;$d' /var/spool/cron/crontabs/root
