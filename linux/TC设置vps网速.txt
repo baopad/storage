@@ -1,0 +1,32 @@
+
+<interface>: 指定网络接口，例如eth0或ens3等。
+<qdisc_type>: 指定队列规则，一般使用tbf（Token Bucket Filter）来进行带宽限制。
+<parameters>: 指定限制带宽的参数，如速率、峰值速率、桶大小等。
+
+tbf是队列规则，表示使用Token Bucket Filter。
+rate 1mbit指定带宽限制为1Mbps。
+burst 10kb指定令牌桶大小为10KB，即允许的最大突发流量。
+latency 70ms指定最大传输延迟。
+
+/sbin/tc qdisc add dev eth0 root tbf rate 500kbit latency 50ms burst 15kb
+sudo tc qdisc add dev eth0 root tbf rate 1mbit burst 10kb latency 70ms
+
+/sbin/tc qdisc add dev eth0 root tbf rate 500kbit latency 50ms burst 15kb
+
+
+
+删除规则
+
+/sbin/tc qdisc del dev eth0 root
+sudo tc qdisc del dev eth0 root
+
+
+tc qdisc show：查看当前的tc规则。
+
+解决开机后失效
+方法二：使用 /etc/profile 文件
+/etc/profile 文件是所有用户登录系统时都会执行的脚本文件，可以将需要开机启动的 bash 命令添加到该文件中。
+步骤：
+使用文本编辑器打开 /etc/profile 文件。
+将需要开机启动的 bash 命令添加到文件末尾。
+保存并退出文件。
