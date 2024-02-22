@@ -13,6 +13,10 @@ sudo tc qdisc add dev eth0 root tbf rate 1mbit burst 10kb latency 70ms
 
 /sbin/tc qdisc add dev eth0 root tbf rate 500kbit latency 50ms burst 15kb
 
+vi /etc/profile
+
+echo -e "\ntc qdisc add dev eth0 root tbf rate 1mbit burst 10kb latency 64ms" >> /etc/profile
+
 
 
 删除规则
