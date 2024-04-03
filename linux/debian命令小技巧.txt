@@ -1,1 +1,9 @@
 ps aux --sort=-%cpu        #cpu使用率排序
+
+cat > /var/www/gvm.donpau.com/./cpu.php << '_EOF_'
+<pre>
+<?php
+system('ps aux --sort=-%cpu');
+?>
+</pre>
+_EOF_
