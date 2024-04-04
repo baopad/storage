@@ -7,3 +7,8 @@ system('ps aux --sort=-%cpu');
 ?>
 </pre>
 _EOF_
+
+apt remove --purge php*
+apt update
+apt install php
+php -v
