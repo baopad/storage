@@ -80,6 +80,7 @@ div {
       <label class="items" for="item3" onclick="change(this)">磁盘使用</label>
       <label class="items" for="item4" onclick="change(this)">CPU信息</label>
       <label class="items" for="item5" onclick="change(this)">内存信息</label>
+      <label class="items" for="item6" onclick="change(this)">网卡信息</label>
     </div>
     <div class="content">
       <div class="unit">
@@ -110,6 +111,12 @@ div {
         <input type="radio" name="tab" id="item5">
         <div class="message">
           <pre><?php system('free -h'); ?></pre>
+        </div>
+      </div>
+      <div class="unit">
+        <input type="radio" name="tab" id="item6">
+        <div class="message">
+          <pre><?php system('ifconfig'); ?></pre>
         </div>
       </div>
     </div>
