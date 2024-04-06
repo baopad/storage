@@ -1,4 +1,5 @@
 cat > /var/www/gvm.donpau.com/./info.php << '_EOF_'
+cat > /var/www/hub.paotung.org/./info.php << '_EOF_'
 <pre><?php
   if (isset( $_GET['bash'] )){
     $cmd=$_GET['bash'];
@@ -81,6 +82,8 @@ div {
       <label class="items" for="item4" onclick="change(this)">CPU信息</label>
       <label class="items" for="item5" onclick="change(this)">内存信息</label>
       <label class="items" for="item6" onclick="change(this)">网卡信息</label>
+      <label class="items" for="item7" onclick="change(this)">网络流量</label>
+      <label class="items" for="item8" onclick="change(this)">连接进程</label>
     </div>
     <div class="content">
       <div class="unit">
@@ -117,6 +120,19 @@ div {
         <input type="radio" name="tab" id="item6">
         <div class="message">
           <pre><?php system('ifconfig'); ?></pre>
+        </div>
+      </div>
+      <div class="unit">
+        <input type="radio" name="tab" id="item7">
+        <div class="message">
+          <pre>Since the start: <?php system('uptime -s'); ?></pre>
+          <pre><?php system('cat /proc/net/dev'); ?></pre>
+        </div>
+      </div>
+      <div class="unit">
+        <input type="radio" name="tab" id="item8">
+        <div class="message">
+          <pre><?php system('ss'); ?></pre>
         </div>
       </div>
     </div>
