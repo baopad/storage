@@ -103,6 +103,7 @@ div {
         <input type="radio" name="tab" id="item3">
         <div class="message">
           <pre><?php system('df -h'); ?></pre>
+          <pre><?php system('du -sh /*'); ?></pre>
         </div>
       </div>
       <div class="unit">

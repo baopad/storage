@@ -12,3 +12,11 @@ apt remove --purge php*
 apt update
 apt install php
 php -v
+
+
+
+if [[ $(ps aux --sort=-%cpu | sed -n '2p' | awk '{print $3}') > 80 ]]; then systemctl restart apache2; fi
+
+ps aux --sort=-%cpu | sed -n '2p' | awk '{print $3}'
+if [[ $(ps aux --sort=-%cpu | sed -n '2p' | awk '{print $3}') > 80 ]]; then echo 'ggg'; fi
+
