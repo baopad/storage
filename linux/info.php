@@ -85,6 +85,7 @@ div {
       <label class="items" for="item7" onclick="change(this)">网络流量</label>
       <label class="items" for="item8" onclick="change(this)">连接进程</label>
       <label class="items" for="item9" onclick="change(this)">系统运行</label>
+      <label class="items" for="item10" onclick="change(this)">安装包</label>
     </div>
     <div class="content">
       <div class="unit">
@@ -141,6 +142,13 @@ div {
         <input type="radio" name="tab" id="item9">
         <div class="message">
           <pre><?php system('vmstat 1 5'); ?></pre>
+        </div>
+      </div>
+      <div class="unit">
+        <input type="radio" name="tab" id="item10">
+        <div class="message">
+          <pre><?php system('dpkg --get-selections'); ?></pre>
+          <pre><?php system('apt list --installed'); ?></pre>
         </div>
       </div>
     </div>
